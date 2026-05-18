@@ -1,0 +1,40 @@
+{
+  "name": "device-management-api",
+  "version": "1.0.0",
+  "description": "Device Management API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomdob1/device-management-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomdob1/device-management-api/issues"
+  },
+  "homepage": "https://github.com/tomdob1/device-management-api#readme",
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^25.9.0",
+    "@types/supertest": "^7.2.0",
+    "@types/uuid": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.4",
+    "@typescript-eslint/parser": "^8.59.4",
+    "eslint": "^10.4.0",
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2",
+    "ts-jest": "^29.4.9",
+    "typescript": "^6.0.3"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.10.0",
+    "express": "^5.2.1",
+    "uuid": "^14.0.0"
+  }
+}
