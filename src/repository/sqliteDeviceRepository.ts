@@ -16,6 +16,7 @@ export const sqliteDeviceRepository: DeviceRepository = {
   },
 
   findById(id: string): Device | undefined {
+    return db.prepare('SELECT * FROM devices WHERE id = ?').get(id) as Device | undefined;
   },
 
   update(device: Device): void {
