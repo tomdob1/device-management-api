@@ -13,6 +13,7 @@ export const sqliteDeviceRepository: DeviceRepository = {
   },
 
   findAll(): Device[] {
+    return db.prepare('SELECT * FROM devices').all() as Device[];
   },
 
   findById(id: string): Device | undefined {

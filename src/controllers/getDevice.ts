@@ -1,7 +1,7 @@
 import { sqliteDeviceRepository as deviceRepository } from "../repository/sqliteDeviceRepository"
 import { Request, Response } from 'express';
 
-export const getDevice = (request: Request<{ id: string }>, response: Response): void => {
+export const getDevice = (request: Request, response: Response): void => {
     try {
         const device = deviceRepository.findById(request.params.id);
         if (!device) {
