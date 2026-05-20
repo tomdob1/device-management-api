@@ -1,7 +1,7 @@
 import { DEVICE_TYPES, MAX_LENGTH } from "../../constsants";
 
 export const isString = (val: unknown): val is string => {
-  
+
   return typeof val === 'string';
 }
 
@@ -24,5 +24,11 @@ export const validateLocation = (location: unknown): string | null => {
   if (!isString(location)) return 'location must be a string';
   if (location.length > MAX_LENGTH) return `location must be ${MAX_LENGTH} characters or fewer`;
 
+  return null;
+}
+
+export function validateStatus(status: unknown): string | null {
+  if (!isString(status)) return 'status must be a string';
+  
   return null;
 }
