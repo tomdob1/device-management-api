@@ -9,14 +9,17 @@ export const sqliteDeviceRepository: DeviceRepository = {
       INSERT INTO devices (id, name, type, status, location, createdAt, updatedAt)
       VALUES (@id, @name, @type, @status, @location, @createdAt, @updatedAt)
     `).run(device);
+    
     return device;
   },
 
   findAll(): Device[] {
+
     return db.prepare('SELECT * FROM devices').all() as Device[];
   },
 
   findById(id: string): Device | undefined {
+
     return db.prepare('SELECT * FROM devices WHERE id = ?').get(id) as Device | undefined;
   },
 
@@ -24,5 +27,8 @@ export const sqliteDeviceRepository: DeviceRepository = {
   },
 
   delete(id: string): number {
+    const result = db.prepare('DELETE FROM devices WHERE id = ?').run(id);
+
+    return result.changes;
   },
 };

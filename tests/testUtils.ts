@@ -1,15 +1,15 @@
-import { NextFunction, Request, Response } from 'express';
-import { ParamsDictionary } from 'express-serve-static-core';
+import { Request, Response } from 'express';
 
-export const mockRequest = <P extends Record<string, string> = ParamsDictionary>(
-  overrides: { params?: P; body?: Record<string, unknown> } = {}
-): Request<P> => ({ params: {} as P, body: {}, ...overrides } as unknown as Request<P>);
+export const mockRequest = (overrides = {}): Request => {
+  
+  return ({ params: {}, body: {}, ...overrides } as unknown as Request);
+}
+  
 
 export const mockResponse = (): Response => {
-  const res: Partial<Response> = {};
-  res.status = jest.fn().mockReturnValue(res) as unknown as Response['status'];
-  res.json = jest.fn().mockReturnValue(res) as unknown as Response['json'];
-  return res as Response;
-};
+  const response: Partial<Response> = {};
+  response.status = jest.fn().mockReturnValue(response) as unknown as Response['status'];
+  response.json = jest.fn().mockReturnValue(response) as unknown as Response['json'];
 
-export const mockNext = (): NextFunction => jest.fn() as unknown as NextFunction;
+  return response as Response;
+};
