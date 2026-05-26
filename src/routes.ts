@@ -3,12 +3,14 @@ import { createDevice } from './controllers/createDevice';
 import { getDevice } from './controllers/getDevice';
 import { listDevices } from './controllers/listDevices';
 import { deleteDevice } from './controllers/deleteDevice';
+import { updateDevice } from './controllers/updateDevice';
 
 const router = Router();
 
-export default router;
-
+router.get('/', listDevices);
+router.get('/:id', getDevice);
 router.post('/', createDevice);
-router.get('device/:id', getDevice);
-router.get('devices/', listDevices);
-router.delete('device/:id', deleteDevice);
+router.patch('/:id', updateDevice);
+router.delete('/:id', deleteDevice);
+
+export default router;
