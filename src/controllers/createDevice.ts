@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { validateLocation, validateName, validateType } from './helpers/helpers';
 import { DeviceType } from '../constsants';
 import { sqliteDeviceRepository as deviceRepository } from '../repository/sqliteDeviceRepository';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 interface CreateDeviceBody {
   name: string;
@@ -10,7 +10,7 @@ interface CreateDeviceBody {
   location?: string;
 }
 
-export const createDevice = (request: Request, response: Response): void => {
+export const createDevice = (request: Request, response: Response, next: NextFunction): void => {
     const error = validateCreatePayload(request.body);
     if (error) {
         response.status(400).json({error});
@@ -31,8 +31,7 @@ export const createDevice = (request: Request, response: Response): void => {
         });
         response.status(201).json(device);
     } catch (err) {
-        //TODO add error handling
-        console.log('error');
+        next(err);
     }
 }
 

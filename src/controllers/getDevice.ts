@@ -1,7 +1,7 @@
 import { sqliteDeviceRepository as deviceRepository } from "../repository/sqliteDeviceRepository"
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
-export const getDevice = (request: Request, response: Response): void => {
+export const getDevice = (request: Request, response: Response, next: NextFunction): void => {
     try {
         const device = deviceRepository.findById(request.params.id);
         if (!device) {
@@ -11,6 +11,6 @@ export const getDevice = (request: Request, response: Response): void => {
         response.json(device);
     }
     catch (err) {
-        //TODO log error
+        next(err);
     }
 }

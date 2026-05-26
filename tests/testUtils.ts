@@ -1,4 +1,6 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+
+export const mockNext = (): NextFunction => jest.fn() as unknown as NextFunction;
 
 export const mockRequest = (overrides = {}): Request => {
   

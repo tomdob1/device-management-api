@@ -24,6 +24,10 @@ export const sqliteDeviceRepository: DeviceRepository = {
   },
 
   update(device: Device): void {
+    db.prepare(`
+      UPDATE devices SET name = @name, type = @type, status = @status, location = @location, updatedAt = @updatedAt
+      WHERE id = @id
+    `).run(device);
   },
 
   delete(id: string): number {

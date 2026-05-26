@@ -1,7 +1,7 @@
 import { listDevices } from '../../src/controllers/listDevices';
 import { Device } from '../../src/repository/deviceRepository';
 import { sqliteDeviceRepository as deviceRepository } from '../../src/repository/sqliteDeviceRepository';
-import { mockRequest, mockResponse } from '../testUtils';
+import { mockNext, mockRequest, mockResponse } from '../testUtils';
 
 jest.mock('../../src/repository/sqliteDeviceRepository', () => ({
   sqliteDeviceRepository: {
@@ -19,7 +19,7 @@ describe('listDevices', () => {
     jest.mocked(deviceRepository.findAll).mockReturnValue(devices);
 
     const response = mockResponse();
-    listDevices(mockRequest({}), response);
+    listDevices(mockRequest({}), response, mockNext());
 
     expect(response.json).toHaveBeenCalledWith(devices);
   });
@@ -28,7 +28,7 @@ describe('listDevices', () => {
     jest.mocked(deviceRepository.findAll).mockReturnValue([]);
 
     const response = mockResponse();
-    listDevices(mockRequest({}), response);
+    listDevices(mockRequest({}), response, mockNext());
 
     expect(response.json).toHaveBeenCalledWith([]);
   });

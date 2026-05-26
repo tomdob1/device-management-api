@@ -1,6 +1,6 @@
 import { getDevice } from '../../src/controllers/getDevice';
 import { Device } from '../../src/repository/deviceRepository';
-import { mockRequest, mockResponse } from '../testUtils';
+import { mockNext, mockRequest, mockResponse } from '../testUtils';
 
 jest.mock('../../src/repository/sqliteDeviceRepository', () => ({
   sqliteDeviceRepository: {
@@ -25,7 +25,7 @@ describe('getDevice', () => {
     jest.mocked(deviceRepository.findById).mockReturnValue(device);
 
     const response = mockResponse();
-    getDevice(mockRequest({ params: { id: '1' } }), response);
+    getDevice(mockRequest({ params: { id: '1' } }), response, mockNext());
 
     expect(response.json).toHaveBeenCalledWith(device);
   });
@@ -34,7 +34,7 @@ describe('getDevice', () => {
     jest.mocked(deviceRepository.findById).mockReturnValue(undefined);
 
     const response = mockResponse();
-    getDevice(mockRequest({ params: { id: 'unknown' } }), response);
+    getDevice(mockRequest({ params: { id: 'unknown' } }), response, mockNext());
 
     expect(response.status).toHaveBeenCalledWith(404);
     expect(response.json).toHaveBeenCalledWith({ error: 'Device not found' });
